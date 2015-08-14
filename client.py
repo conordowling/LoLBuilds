@@ -81,7 +81,7 @@ if platform.system() == 'Darwin':
 		json.dump(json_data, f)
 		print "saved build"
 elif platform.system() == 'Windows':
-	directory = "C:/Riot Games/League of Legends/Config/Global/" + champion_key + "/Recommended/LolBuilder.json"
+	directory = "C:/Riot Games/League of Legends/Config/Champions/" + champion_key + "/Recommended/LolBuilder.json"
 	with open(directory, 'w+') as f:
 		json.dump(json_data, f)
 		print "saved build"

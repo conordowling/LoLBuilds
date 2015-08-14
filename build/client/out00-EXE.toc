@@ -1,0 +1,9 @@
+('/Users/conor/umass/lol_analysis/ItemBuilds/dist/client',
+ True,
+ False,
+ None,
+ None,
+ [],
+ None,
+ False,
+ 1439589291)
