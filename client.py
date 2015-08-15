@@ -58,7 +58,7 @@ while not game_found:
 		print game
 		game_found = True
 	except Exception as e:
-		print "failed"
+		pass
 
 champion_id = None
 for player in game["participants"]:
@@ -80,8 +80,11 @@ if platform.system() == 'Darwin':
 	with open(directory, 'w+') as f:
 		json.dump(json_data, f)
 		print "saved build"
-elif platform.system() == 'Windows':
+# save on windows
+elif platform.system() == 'Windows' or platform.system.startswith("CYGWIN_NT"):
 	directory = "C:/Riot Games/League of Legends/Config/Champions/" + champion_key + "/Recommended/LolBuilder.json"
 	with open(directory, 'w+') as f:
 		json.dump(json_data, f)
 		print "saved build"
+else:
+	print("no os found")
