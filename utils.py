@@ -18,3 +18,5 @@ def get_patches():
 def get_current_patch():
 	return get_patches()[0]
 
+def get_items():
+	return watcher.static_get_item_list()
