@@ -7,9 +7,6 @@ import time
 import json
 import platform
 
-region = "na"
-summoner_name = "frodo621"
-
 def get_item_build(champion_key):
 
 	item_build = {
@@ -43,8 +40,11 @@ def wait_for_request():
     while not watcher.can_make_request():
         time.sleep(0.1)
 
-#frodo621 key
-key = "45fbe47f-84f1-43b6-9394-9f433a23d522"
+with open('settings.json') as f:
+	settings = json.load(f)
+	region = settings['region']
+	summoner_name = settings['summonerName']
+	key = settings['apikey']
 
 watcher = RiotWatcher(key)
 
@@ -60,6 +60,7 @@ while not game_found:
 	except Exception as e:
 		pass
 
+#find which champion they are playing
 champion_id = None
 for player in game["participants"]:
 	if player["summonerId"] == summoner_id:
@@ -67,6 +68,15 @@ for player in game["participants"]:
 
 wait_for_request()
 
+# find other matches where they played that champion
+matches = watcher.get_match_history(summoner_id, region=region, chapion_ids=[champion_id])
+
+wait_for_request()
+
+# TO DO
+# find matches on the relevant map if possible and add item builds to files.
+
+wait_for_request()
 champ_data = watcher.static_get_champion(champion_id, region=region)
 print "CHAMP DATA"
 print champ_data
